@@ -1,5 +1,5 @@
 import Feature from "@/components/Feature";
-import { Center, Container, Tabs } from "@mantine/core";
+import { Container, Tabs, Text } from "@mantine/core";
 
 const FEATURES = [
   {
@@ -39,15 +39,13 @@ const FEATURES = [
 const Features = () => {
   return (
     <Container py={150} fluid>
-      <Tabs defaultValue="appointment" variant="pills">
-        <Center>
-          <Tabs.List>
-            <Tabs.Tab value="appointment">Appointment Booking</Tabs.Tab>
-            <Tabs.Tab value="customization">Shop Customization</Tabs.Tab>
-            <Tabs.Tab value="employee">Employee Management</Tabs.Tab>
-            <Tabs.Tab value="stats">Stats and Analytics</Tabs.Tab>
+      <Tabs defaultValue="appointment" variant="pills" radius='md'>
+          <Tabs.List position="center">
+            <Tabs.Tab value="appointment"><Text>Appointment Booking</Text></Tabs.Tab>
+            <Tabs.Tab value="customization"><Text>Shop Customization</Text></Tabs.Tab>
+            <Tabs.Tab value="employee"><Text>Employee Management</Text></Tabs.Tab>
+            <Tabs.Tab value="stats"><Text>Stats and Analytics</Text></Tabs.Tab>
           </Tabs.List>
-        </Center>
 
         {FEATURES.map((feature, index) => (
           <Tabs.Panel key={index} value={feature.value} pt="xs">
