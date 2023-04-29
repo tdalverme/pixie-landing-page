@@ -1,28 +1,18 @@
-import NavBarLink, { NavBarLinkProps } from '@/ui/NavBarLink';
-import { Group, Button, Flex, Text } from "@mantine/core";
+import Button from '@/ui/Button/Button';
 import React from 'react'
 
-interface NavBarProps {
-  items: NavBarLinkProps[];
-}
-
-const NavBar = ({ items }: NavBarProps): React.ReactElement => {
+const NavBar = (): React.ReactElement => {
   return (
-    <Flex justify='space-between' py="md" px="xl">
-      <Group>
-        <Text color="black">Pixie</Text>
-      </Group>
+    <div className='flex flex-row justify-between items-center px-20 py-5 bg-violet-600'>
+      <div>
+        <span>Pixie</span>
+      </div>
 
-      <Group spacing="xl" grow>
-        {items.map((item) => (
-          <NavBarLink key={item.link} {...item} />
-        ))}
-      </Group>
-
-      <Button>
-        Sign Up
-      </Button>
-    </Flex>
+      <div className='flex flex-row justify-center items-center gap-2'>
+        <Button variant='white-ghost' size='sm'>Log In</Button>
+        <Button variant='white' size='sm'>Sign Up</Button>
+      </div>
+    </div>
   );
 };
 
