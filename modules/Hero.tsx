@@ -1,22 +1,22 @@
-import { Button, Container, Image, Stack, Title } from "@mantine/core"
+import Button from "@/ui/Button/Button";
+import Text from "@/ui/Text/Text";
 
 const Hero = (): React.ReactElement => {
   return (
-    <Container py="md">
-      <Stack align="center">
-        <Title order={1} maw={800} align="center">
-          Easily Handle Your Shop's Appointments, Services, and More
-        </Title>
+    <div className="flex flex-col justify-center items-center bg-violet-600 pt-10 pb-24">
+      <Text variant="h1" className="text-center text-white max-w-4xl">
+        Easily Handle Your Shop's Appointments, Services, and More
+      </Text>
 
-        <Button>Sign up for free</Button>
+      <Button size="lg" variant="white" className="mt-7 mb-12">
+        Sign Up
+      </Button>
 
-        <Image
-          radius="lg"
-          mt="xl"
-          src="https://static.vecteezy.com/system/resources/previews/002/909/206/original/abstract-background-for-landing-pages-banner-placeholder-cover-book-and-print-geometric-pettern-on-screen-gradient-colors-design-vector.jpg"
-        />
-      </Stack>
-    </Container>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+        className="rounded-3xl"
+      />
+    </div>
   );
 }
 
