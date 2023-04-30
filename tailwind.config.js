@@ -7,7 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ["Rubik", "system-ui"],
+      serif: ["Rubik", "system-ui"],
+      body: ["Karla", "system-ui"],
+    },
   },
-  plugins: [],
-}
+  plugins: [require("tailwindcss-radix")({ variantPrefix: "rdx" })],
+};
 
