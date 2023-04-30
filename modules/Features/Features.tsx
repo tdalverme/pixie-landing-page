@@ -1,9 +1,12 @@
-import Feature from "@/components/Feature";
-import { Container, Tabs, Text } from "@mantine/core";
+import Feature from "@/components/Feature/Feature";
+import TabItem from "@/ui/TabItem/TabItem";
+import * as Tabs from "@radix-ui/react-tabs";
 
 const FEATURES = [
   {
     value: "appointment",
+    label: "Appointment Booking",
+    icon: "calendar_today",
     title: "Seize Every Booking Opportunity",
     description:
       "Pixie offers a seamless online booking platform for customers to easily select services, choose day, time, and employee, with instant confirmation, reducing no-shows and cancellations.",
@@ -12,6 +15,8 @@ const FEATURES = [
   },
   {
     value: "customization",
+    label: "Shop Customization",
+    icon: "storefront",
     title: "Craft Your Shop's Perfect Image",
     description:
       "Pixie empowers you to customize your shop profile, giving you full control to easily update and manage your business details in one place.",
@@ -20,6 +25,8 @@ const FEATURES = [
   },
   {
     value: "employee",
+    label: "Employees Management",
+    icon: "group",
     title: "Empower Your Team, Elevate Your Shop",
     description:
       "Pixie simplifies employee management, ensuring smooth coordination and utilization of your team, resulting in a more efficient and productive shop.",
@@ -28,6 +35,8 @@ const FEATURES = [
   },
   {
     value: "stats",
+    label: "Stats & Analytics",
+    icon: "show_chart",
     title: "Make Data-Driven Decisions",
     description:
       "Get real-time shop stats and analytics for tracking bookings, revenue, customer trends, and more. Optimize your business strategies with Pixie's comprehensive insights.",
@@ -38,22 +47,25 @@ const FEATURES = [
 
 const Features = () => {
   return (
-    <Container py={150} fluid>
-      <Tabs defaultValue="appointment" variant="pills" radius='md'>
-          <Tabs.List position="center">
-            <Tabs.Tab value="appointment"><Text>Appointment Booking</Text></Tabs.Tab>
-            <Tabs.Tab value="customization"><Text>Shop Customization</Text></Tabs.Tab>
-            <Tabs.Tab value="employee"><Text>Employee Management</Text></Tabs.Tab>
-            <Tabs.Tab value="stats"><Text>Stats and Analytics</Text></Tabs.Tab>
-          </Tabs.List>
-
-        {FEATURES.map((feature, index) => (
-          <Tabs.Panel key={index} value={feature.value} pt="xs">
-            <Feature {...feature} />
-          </Tabs.Panel>
+    <Tabs.Root defaultValue="appointment">
+      <Tabs.List aria-label="Pixie's features" className="flex items-center justify-center">
+        {FEATURES.map((feature) => (
+          <Tabs.Trigger
+            key={feature.value}
+            value={feature.value}
+            className="group"
+          >
+            <TabItem icon={feature.icon}>{feature.label}</TabItem>
+          </Tabs.Trigger>
         ))}
-      </Tabs>
-    </Container>
+      </Tabs.List>
+
+      {FEATURES.map((feature) => (
+        <Tabs.Content key={feature.value} value={feature.value}>
+          <Feature {...feature} />
+        </Tabs.Content>
+      ))}
+    </Tabs.Root>
   );
 }
 
