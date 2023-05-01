@@ -6,7 +6,7 @@ const useButtonVariant = (variant: ButtonVariant, size: ButtonSize) => {
       container: "bg-violet-600 text-white",
     },
     outline: {
-      container: "",
+      container: "text-violet-600 border-2 border-violet-600",
     },
     ghost: {
       container: "",
@@ -24,13 +24,13 @@ const useButtonVariant = (variant: ButtonVariant, size: ButtonSize) => {
       container: "text-sm"
     },
     md: {
-      container: ""
+      container: "text-base"
     },
     lg: {
       container: "text-lg",
     },
     "full-width": {
-        container: "w-full"
+        container: "text-lg w-full"
     }
   };
 
