@@ -18,24 +18,26 @@ const Text = ({
       );
     case "h2":
       return (
-        <h2 className={clsx("text-5xl font-bold", className)}>{children}</h2>
+        <h2 className={clsx("text-5xl font-medium", className)}>{children}</h2>
       );
     case "h3":
       return (
-        <h3 className={clsx("text-4xl font-bold", className)}>{children}</h3>
+        <h3 className={clsx("text-4xl font-medium", className)}>{children}</h3>
       );
     case "h4":
       return (
-        <h4 className={clsx("text-3xl font-bold", className)}>{children}</h4>
+        <h4 className={clsx("text-3xl font-medium", className)}>{children}</h4>
       );
     case "h5":
       return <h5 className={clsx("text-2xl", className)}>{children}</h5>;
     case "h6":
       return <h6 className={clsx("text-xl", className)}>{children}</h6>;
     case "body1":
-      return <p className={clsx("", className)}>{children}</p>;
+      return <p className={clsx("text-xl", className)}>{children}</p>;
     case "body2":
-      return <p className={clsx("", className)}>{children}</p>;
+      return <p className={clsx("text-base", className)}>{children}</p>;
+    case "overline":
+      return <p className={clsx("text-base font-medium uppercase tracking-widest", className)}>{children}</p>
   }
 
   return <p className={clsx("", className)}>{children}</p>;
