@@ -20,7 +20,7 @@ const Button = ({
     <button
       type="button"
       className={clsx(
-        "px-7 py-3 rounded-full text-center font-bold",
+        "px-7 py-3.5 rounded-full text-center font-medium",
         variantStyles.container,
         sizeStyles.container,
         className
