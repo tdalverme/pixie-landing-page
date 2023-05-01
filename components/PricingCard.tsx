@@ -1,4 +1,8 @@
-import { Badge, Button, Card, Center, CheckIcon, Container, Flex, Group, rem, Stack, Text } from '@mantine/core'
+import usePricingVariant from "@/modules/Pricing/usePricingVariant"
+import Button from "@/ui/Button/Button"
+import Text from "@/ui/Text/Text"
+import clsx from "clsx"
+import { MaterialSymbol } from "react-material-symbols"
 
 interface PricingInfo {
     name: string
@@ -13,65 +17,70 @@ interface PricingCardProps {
 }
 
 const PricingCard = ({info}: PricingCardProps) => {
+  const { variantStyles } = usePricingVariant(
+    info.mostPopular ? "popular" : "default"
+  );
+
   return (
-    <Card p="sm" w={350} withBorder={info.mostPopular} radius="md">
-      {/* <Card.Section>
-        <Center py="md" sx={{ backgroundColor: info.mostPopular ? "blue" : "lightblue" }}>
-          <Text size="sm" transform="uppercase" weight="bold">
-            {info.name}
-          </Text>
-        </Center>
-      </Card.Section> */}
-
-      <Container px="lg" py="md">
-        <Group position="apart">
-          <Text size="xl" weight="bold">
-            {info.name}
-          </Text>
-          {info.mostPopular && <Badge>Popular</Badge>}
-        </Group>
-
-        <Flex align="center" gap="md">
-          <Flex align="center" gap="xs">
-            <Text size="xl" weight="bold">
-              $
-            </Text>
-            <Text size={rem(36)} weight="bold">
-              {info.price}
-            </Text>
-          </Flex>
-          <Text c="dimmed">/month</Text>
-        </Flex>
-
-        <Text size="sm" c="dimmed">
-          {info.description}
+    <div
+      className={clsx(
+        "flex flex-col rounded-2xl overflow-hidden",
+        variantStyles.container
+      )}
+    >
+      <div className={clsx("flex justify-center py-6", variantStyles.header)}>
+        <Text variant="overline" className="text-white">
+          {info.mostPopular ? "Most Popular" : "a"}
         </Text>
+      </div>
+
+      <div className="flex flex-col p-10 gap-8">
+        <div className="flex flex-col gap-5">
+          <Text
+            variant="h4"
+            className={info.mostPopular ? "text-violet-600" : "text-violet-400"}
+          >
+            {info.name}
+          </Text>
+          <div className="flex items-end gap-5">
+            <div className="flex items-center gap-5">
+              <Text variant="h4" className="font-light text-gray-400">
+                $
+              </Text>
+              <Text variant="h2">{info.price}</Text>
+            </div>
+            <Text variant="body2" className="leading-loose text-gray-400">
+              /month
+            </Text>
+          </div>
+
+          <Text variant="body2" className="text-gray-400">
+            {info.description}
+          </Text>
+        </div>
 
         <Button
-          fullWidth
-          mt="md"
-          size="lg"
-          variant={info.mostPopular ? "filled" : "outline"}
+          variant={info.mostPopular ? "primary" : "outline"}
+          size="full-width"
         >
           Get Started
         </Button>
 
-        <Container p={0} mt="md">
-          <Text transform="uppercase" weight="bold" size="sm">
-            Features
-          </Text>
-
-          <Stack spacing="sm" mt="xs">
-            {info.features.map((feature, index) => (
-              <Flex key={index} gap="sm">
-                <CheckIcon width={12} />
-                <Text size="sm">{feature}</Text>
-              </Flex>
+        <div className="flex flex-col gap-4">
+          <Text variant="overline">Features</Text>
+          <div className="flex flex-col gap-4">
+            {info.features.map((feature) => (
+              <div className="flex items-center gap-3">
+                <div className="text-violet-600 flex items-center justify-center">
+                  <MaterialSymbol icon="check" size={16} />
+                </div>
+                <Text variant="body2">{feature}</Text>
+              </div>
             ))}
-          </Stack>
-        </Container>
-      </Container>
-    </Card>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
