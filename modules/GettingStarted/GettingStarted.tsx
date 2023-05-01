@@ -1,5 +1,7 @@
-import { Accordion, Center, Flex, Image, Text, Title } from "@mantine/core";
-import React, { useState } from "react";
+import Text from '@/ui/Text/Text';
+import * as Accordion from '@radix-ui/react-accordion';
+import { useState } from "react";
+import { MaterialSymbol } from 'react-material-symbols';
 
 const STEPS = [
   {
@@ -48,35 +50,38 @@ const GettingStarted = (): React.ReactElement => {
   const [stepSelected, setStepSelected] = useState("create");
 
   return (
-    <Center m="auto" maw="80%">
-      <Flex align="center" justify="center" gap={50} py={100}>
-        <Accordion
-          defaultValue="create"
-          variant="contained"
-          onChange={(value) => setStepSelected(value ?? "")}
-        >
-          {STEPS.map((step, index) => (
-            <Accordion.Item key={index} value={step.value}>
-              <Accordion.Control>
-                <Title order={6}>{step.title}</Title>
-              </Accordion.Control>
-              <Accordion.Panel>
-                <Text>{step.description}</Text>
-              </Accordion.Panel>
-            </Accordion.Item>
-          ))}
-        </Accordion>
+    <div className="flex gap-20">
+      <Accordion.Root
+        type="single"
+        defaultValue="create"
+        collapsible
+        className="flex-1"
+        onValueChange={(value) => setStepSelected(value)}
+      >
+        {STEPS.map((step) => (
+          <Accordion.Item
+            value={step.value}
+            className="group flex-1 rdx-state-open:bg-slate-300 rounded-lg"
+          >
+            <Accordion.Trigger className="flex items-center gap-4 py-4 px-5 w-full">
+              <div className="text-left w-full text-lg group-rdx-state-open:font-medium">
+                {step.title}
+              </div>
+              <MaterialSymbol icon={stepSelected === step.value ? "expand_more" : "chevron_right"} size={20} />
+            </Accordion.Trigger>
 
-        <Image
-          src={
-            STEPS[STEPS.findIndex(({ value }) => value === stepSelected)]
-              ?.imgSrc
-          }
-          alt=""
-          radius="lg"
-        />
-      </Flex>
-    </Center>
+            <Accordion.Content className="pl-5 pr-10 pb-8">
+              <Text variant="body2">{step.description}</Text>
+            </Accordion.Content>
+          </Accordion.Item>
+        ))}
+      </Accordion.Root>
+
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/002/909/206/original/abstract-background-for-landing-pages-banner-placeholder-cover-book-and-print-geometric-pettern-on-screen-gradient-colors-design-vector.jpg"
+        className="max-w-md object-cover"
+      />
+    </div>
   );
 };
 
